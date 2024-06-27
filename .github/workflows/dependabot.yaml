@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Enable version updates for OpenTofu
+  - package-ecosystem: "terraform"
+    # Look for `.tf` files in the `environments` directory
+    directory: "/environments/dev"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "terraform"
+    directory: "/environments/staging"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "terraform"
+    directory: "/environments/prod"
+    schedule:
+      interval: "weekly"
