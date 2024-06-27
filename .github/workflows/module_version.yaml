@@ -40,8 +40,8 @@ jobs:
 
           NEW_TAG="${MODULE}-v${MAJOR}.${MINOR}.${PATCH}"
 
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name flavius-dinu
+          git config user.email flaviuscdinu93@gmail.com
           git tag -a $NEW_TAG -m "Release $NEW_TAG"
 
           # Use the GITHUB_TOKEN for authentication
@@ -49,16 +49,3 @@ jobs:
 
           echo "new_tag=${NEW_TAG}" >> $GITHUB_OUTPUT
         id: tag_version
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: |
-            Changes in this Release
-            - ${{ steps.changed_module.outputs.module }} updated to ${{ steps.tag_version.outputs.new_tag }}
-          draft: false
-          prerelease: false
