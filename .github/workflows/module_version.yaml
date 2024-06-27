@@ -22,10 +22,13 @@ jobs:
           echo "module=$MODULE" >> $GITHUB_OUTPUT
 
       - name: Generate and push tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           MODULE=${{ steps.changed_module.outputs.module }}
           LATEST_TAG=$(git describe --tags --abbrev=0 --match "${MODULE}-v*" 2>/dev/null || echo "${MODULE}-v0.0.0")
 
+          # Extract version number and increment patch
           VERSION=$(echo $LATEST_TAG | sed -e "s/${MODULE}-v//")
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
@@ -37,7 +40,9 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git tag -a $NEW_TAG -m "Release $NEW_TAG"
-          git push origin $NEW_TAG
+
+          # Use the GITHUB_TOKEN for authentication
+          git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $NEW_TAG
 
           echo "new_tag=${NEW_TAG}" >> $GITHUB_OUTPUT
         id: tag_version
@@ -45,7 +50,7 @@ jobs:
       - name: Create Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
