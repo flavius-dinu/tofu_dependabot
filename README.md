@@ -1,30 +1,35 @@
 
 # Welcome to the Tofu Dependabot Project!
 
+![OpenTofu_Dependabot](./images/tofu_dependabot.jpg)
+
 ## Overview
-Tofu Dependabot is a GitHub repository dedicated to enhancing the automation of dependency management. This project utilizes Dependabot to keep your dependencies updated, ensuring your applications remain secure and up-to-date with the latest patches.
+Managing dependencies is critical to the software development lifecycle (SDLC), ensuring that your project stays up-to-date with the latest features and security fixes. 
 
-## Features
-- **Automated Dependency Updates:** Dependabot scans your project for outdated dependencies and opens pull requests to update them.
-- **Integration with CI/CD Pipelines:** Seamlessly integrates with your continuous integration and deployment workflows.
-- **Customization Options:** Configure Dependabot to fit your project’s needs with ease.
+Dependabot is a popular tool for automating dependency updates, and OpenTofu, is an open-source tool for managing IaC and can be integrated with it to keep your infrastructure configurations current. 
 
-## Getting Started
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/flavius-dinu/tofu_dependabot.git
-   cd tofu_dependabot
-   ```
-2. **Configure Dependabot:** Edit the `.github/dependabot.yml` file to customize the dependency update settings.
-3. **Run Your Pipeline:** Ensure your CI/CD pipeline is set to automatically test and merge Dependabot's pull requests.
+Let's explore how to set up and use OpenTofu with Dependabot.
 
-## Contributing
-We welcome contributions! Feel free to fork the repository and submit pull requests. Please adhere to the [code of conduct](link-to-code-of-conduct) and ensure all tests pass before submitting.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
-## Contact
-For any questions or feedback, please open an issue on GitHub or contact [Flavius Dinu](https://github.com/flavius-dinu).
-
-Happy coding!
+```
+├── .devcontainer
+│   ├── Dockerfile
+│   └── devcontainer.json
+├── .github
+│   ├── dependabot.yaml
+│   └── workflows
+│       ├── jekyll-gh-pages.yml
+│       └── module_version.yaml
+├── README.md
+├── environments
+│   ├── dev
+│   │   └── main.tf
+│   ├── prod
+│   │   └── main.tf
+│   └── stage
+│       └── main.tf
+└── modules
+    └── network
+        ├── main.tf
+        ├── provider.tf
+        └── variables.tf
+```
