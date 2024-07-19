@@ -1,0 +1,22 @@
+{
+    "name": "My Codespace",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "extensions": [
+        "hashicorp.terraform",
+        "ms-azuretools.vscode-docker"
+    ],
+    "postCreateCommand": "pip install --upgrade pip",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+    "forwardPorts": [
+        3000
+    ],
+    "remoteUser": "vscode"
+}
