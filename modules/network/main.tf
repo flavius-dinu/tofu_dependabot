@@ -7,3 +7,4 @@ resource "aws_vpc" "this" {
   }, each.value.tags)
 }
 
+
