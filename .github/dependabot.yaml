@@ -8,7 +8,7 @@ updates:
       - dependency-type: "all"
 
   - package-ecosystem: "terraform"
-    directory: "/environments/staging"
+    directory: "/environments/stage"
     schedule:
       interval: "weekly"
     allow:
