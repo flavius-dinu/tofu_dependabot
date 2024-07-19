@@ -5,14 +5,16 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
+    software-properties-common \
     python3-pip \
     python3.10 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Terraform
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - && \
-    apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
-    apt-get update && apt-get install -y terraform
+# Install Terraform 1.5.5
+RUN curl -LO https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linux_amd64.zip && \
+    unzip terraform_1.5.5_linux_amd64.zip && \
+    mv terraform /usr/local/bin/ && \
+    rm terraform_1.5.5_linux_amd64.zip
 
 # Install OpenTofu 1.7.0
 RUN curl -LO https://github.com/opentofu/opentofu/releases/download/v1.7.0/opentofu_1.7.0_linux_amd64.zip && \
