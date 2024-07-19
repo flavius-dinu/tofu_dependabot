@@ -6,4 +6,3 @@ resource "aws_vpc" "this" {
     Name = each.key
   }, each.value.tags)
 }
-
