@@ -17,10 +17,10 @@ RUN curl -LO https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linu
     rm terraform_1.5.5_linux_amd64.zip
 
 # Install OpenTofu 1.7.0
-RUN curl -LO https://github.com/opentofu/opentofu/releases/download/v1.7.0/opentofu_1.7.0_linux_amd64.zip && \
-    unzip opentofu_1.7.0_linux_amd64.zip && \
+RUN curl -LO https://github.com/opentofu/opentofu/releases/download/v1.7.3/tofu_1.7.3_linux_amd64.zip && \
+    unzip tofu_1.7.3_linux_amd64.zip && \
     mv opentofu /usr/local/bin/ && \
-    rm opentofu_1.7.0_linux_amd64.zip
+    rm tofu_1.7.3_linux_amd64.zip
 
 # Install AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
